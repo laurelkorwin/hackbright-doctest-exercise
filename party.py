@@ -2,7 +2,7 @@
 
 
 from flask import Flask, session, render_template, request, flash, redirect
-# from flask_debugtoolbar import DebugToolbarExtension
+from flask_debugtoolbar import DebugToolbarExtension
 
 app = Flask(__name__)
 app.secret_key = "SECRETSECRETSECRET"
@@ -15,6 +15,11 @@ def is_mel(name, email):
     True
     >>> is_mel('Judith Butler', 'judith@awesome.com')
     False
+    >>> is_mel('Bob Dole', 'mel@ubermelon.com')
+    True
+    >>> is_mel('Mel Melitpolski', 'bob@example.com')
+    True
+
 
     """
 
@@ -22,7 +27,19 @@ def is_mel(name, email):
 
 
 def most_and_least_common_type(treats):
-    """Given list of treats, return {most, least} common types."""
+    """Given list of treats, return {most, least} common types.
+
+    >>> treats = [ {'type': 'dessert'}, {'type': 'dessert'},{'type': 'dessert'},{'type': 'dessert'},{'type': 'dessert'},{'type': 'appetizer'}]
+    >>> most_and_least_common_type(treats)
+    ('dessert', 'appetizer')
+
+
+    >>> treats = [{'type': 'dessert'},{'type': 'dessert'}, {'type': 'dessert'}, {'type': 'dessert'}, {'type': 'dessert'} ]
+    >>> 
+    >>> most_and_least_common_type(treats)
+    ('dessert', 'dessert')
+
+    """
 
     types = {}
 
