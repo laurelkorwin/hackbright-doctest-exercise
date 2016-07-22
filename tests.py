@@ -15,8 +15,10 @@ class PartyTests(unittest.TestCase):
         self.assertIn("I'm having a party", result.data)
 
     def test_no_rsvp_yet(self):
-        # FIXME: Add a test to show we haven't RSVP'd yet
-        print "FIXME"
+        result = self.client.get('/')
+        self.assertIn("<h2>Please RSVP</h2>", result.data)
+        self.assertNotIn("<h2>Treats</h2>", result.data)
+
 
     def test_rsvp(self):
         result = self.client.post("/rsvp",
